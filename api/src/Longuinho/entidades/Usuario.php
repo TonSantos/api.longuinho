@@ -1,13 +1,43 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	/**
+	  * @Entity
+	  * @Table(name="USUARIO")
+	  **/
 	class Usuario
 	{	
+		/**
+		* @var integer @Id
+		* @Column(name="id", type="integer")
+		* @GeneratedValue(strategy="AUTO")
+		*/
 		private $id;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $nome;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $email;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $matricula;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $telefone;
+
 
 		public function __construct($id = 0, $nome = "", $email = "", $matricula = "", $telefone = "")
 		{

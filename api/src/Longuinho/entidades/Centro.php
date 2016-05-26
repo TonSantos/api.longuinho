@@ -1,10 +1,29 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	/**
+	  * @Entity
+	  * @Table(name="CENTRO")
+	  **/
 	class Centro
 	{	
+		/**
+		* @var integer @Id
+		* @Column(name="id", type="integer")
+		* @GeneratedValue(strategy="AUTO")
+		*/
 		private $id;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $descricao;
+
+		/**
+		*
+		* @var @Column(name="idCampus", type="integer")
+		*/
 		private $idCampus;
 
 		public function __construct($id = 0, $descricao = "", $idCampus = 0)
@@ -25,7 +44,7 @@
 
 		public function getDescricao()
 		{
-			return $this->descricao
+			return $this->descricao;
 		}
 		public function setDescricao($descricao)
 		{

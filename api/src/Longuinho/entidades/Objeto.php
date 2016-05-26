@@ -1,18 +1,62 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	/**
+	  * @Entity
+	  * @Table(name="OBJETO")
+	  **/
 	class Objeto
 	{	
+		/**
+		* @var integer @Id
+		* @Column(name="id", type="integer")
+		* @GeneratedValue(strategy="AUTO")
+		*/
 		private $id;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $titulo;
+
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
 		private $classificacao;
+
+		/**
+		*
+		* @var @Column(name="idLocal", type="integer")
+		*/
 		private $idLocal;
+
+		/**
+		*
+		* @var @Column(name="idCategoria", type="integer")
+		*/
 		private $idCategoria;
+
+		/**
+		*
+		* @var string @Column(type="datetime")
+		*/
 		private $horario;
+
+		/**
+		*
+		* @var @Column(name="status", type="integer")
+		*/
 		private $status;
+
+		/**
+		*
+		* @var @Column(name="idUsuario", type="integer")
+		*/
 		private $idUsuario;
 
-		public function __construct($id = 0, $titulo = "", $classificacao = "", $idLocal = 0, $idCategoria = 0, $horario = "", $status=0, $idUsuario = 0)
+		public function __construct($id = 0, $titulo = "", $classificacao = "", $idLocal = 0, $idCategoria = 0, $horario = "0000-00-00 00:00:00", $status=0, $idUsuario = 0)
 		{
 			$this->id = $id;
 			$this->titulo = $titulo;
@@ -44,7 +88,7 @@
 
 		public function getClassificacao()
 		{
-			return $this->classificacao
+			return $this->classificacao;
 		}
 		public function setClassificacao($classificacao)
 		{
@@ -99,7 +143,7 @@
 		}
 		public function setIdUsuario($idUsuario)
 		{
-			$this->idUsuario = $idUsuario);
+			$this->idUsuario = $idUsuario;
 		}
 
 

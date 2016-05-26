@@ -1,10 +1,29 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	/**
+	  * @Entity
+	  * @Table(name="LOCAL")
+	  **/
 	class Local
 	{	
+		/**
+		* @var integer @Id
+		* @Column(name="id", type="integer")
+		* @GeneratedValue(strategy="AUTO")
+		*/
 		private $id;
+
+		/**
+		*
+		* @var @Column(name="idCampus", type="integer")
+		*/
 		private $idCampus;
+
+		/**
+		*
+		* @var @Column(name="idCentro", type="integer")
+		*/
 		private $idCentro;
 
 		public function __construct($id = 0, $idCampus = 0, $idCentro = 0)
