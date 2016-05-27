@@ -27,7 +27,7 @@
 		private $classificacao;
 
 		/**
-		 * @ManyToOne(targetEntity="Local",cascade={"persist"})
+		 * @ManyToOne(targetEntity="Local")
 		 * @JoinColumn(name="idLocal", referencedColumnName="id")
 		 */
 		private $idLocal;
@@ -51,7 +51,7 @@
 		private $status;
 
 		/**
-		 * @ManyToOne(targetEntity="Usuario",cascade={"persist"})
+		 * @ManyToOne(targetEntity="Usuario")
 		 * @JoinColumn(name="idUsuario", referencedColumnName="id")
 		 */
 		private $idUsuario;

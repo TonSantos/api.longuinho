@@ -16,7 +16,7 @@
 
 
 		/**
-		 * @ManyToOne(targetEntity="Centro",cascade={"persist"})
+		 * @ManyToOne(targetEntity="Centro")
 		 * @JoinColumn(name="idCentro", referencedColumnName="id")
 		 */
 		private $idCentro;

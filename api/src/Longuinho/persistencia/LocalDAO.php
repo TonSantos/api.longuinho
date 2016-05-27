@@ -15,6 +15,12 @@
 		{
 			parent::__construct('Longuinho\entidades\Local');
 		}
+		public function insert(Local $obj)
+		{
+			$centroPersistido = $this->entityManager->find('Longuinho\entidades\Centro', $obj->getIdCentro()->getId());
+			$obj->setIdCentro($centroPersistido);
+			parent::insert($obj);
+		}
 	}
 
 ?>
