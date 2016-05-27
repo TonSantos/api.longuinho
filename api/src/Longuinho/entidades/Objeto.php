@@ -27,9 +27,9 @@
 		private $classificacao;
 
 		/**
-		*
-		* @var @Column(name="idLocal", type="integer")
-		*/
+		 * @ManyToOne(targetEntity="Local",cascade={"persist"})
+		 * @JoinColumn(name="idLocal", referencedColumnName="id")
+		 */
 		private $idLocal;
 
 		/**
@@ -51,9 +51,9 @@
 		private $status;
 
 		/**
-		*
-		* @var @Column(name="idUsuario", type="integer")
-		*/
+		 * @ManyToOne(targetEntity="Usuario",cascade={"persist"})
+		 * @JoinColumn(name="idUsuario", referencedColumnName="id")
+		 */
 		private $idUsuario;
 
 		public function __construct($id = 0, $titulo = "", $classificacao = "", $idLocal = 0, $idCategoria = 0, $horario = "0000-00-00 00:00:00", $status=0, $idUsuario = 0)

@@ -14,23 +14,31 @@
 		*/
 		private $id;
 
-		/**
-		*
-		* @var @Column(name="idCampus", type="integer")
-		*/
-		private $idCampus;
 
 		/**
-		*
-		* @var @Column(name="idCentro", type="integer")
-		*/
+		 * @ManyToOne(targetEntity="Centro",cascade={"persist"})
+		 * @JoinColumn(name="idCentro", referencedColumnName="id")
+		 */
 		private $idCentro;
 
-		public function __construct($id = 0, $idCampus = 0, $idCentro = 0)
+		/**
+		*
+		* @var string @Column(type="string", length=255)
+		*/
+		private $descricao;
+
+		/**
+		* @OneToMany(targetEntity="Objeto", mappedBy="objeto",cascade={"persist","remove"})
+		**/
+		private $objetos;
+
+
+		public function __construct($id = 0, $idCentro = 0, $descricao = "", $objetos = array())
 		{
 			$this->id = $id;
-			$this->idCampus = $idCampus;
 			$this->idCentro = $idCentro;
+			$this->descricao = $descricao;
+			$this->$objetos = $objetos;
 		}
 
 		public function getId()
@@ -42,15 +50,6 @@
 			$this->id = $id;
 		}
 
-		public function getIdCampus()
-		{
-			return $this->idCampus;
-		}
-		public function setIdCampus($idCampus)
-		{
-			$this->idCampus = $idCampus;
-		}
-
 		public function getIdCentro()
 		{
 			return $this->idCentro;
@@ -60,8 +59,23 @@
 			$this->idCentro = $idCentro;
 		}
 
+		public function getDescricao()
+		{
+			return $this->descricao;
+		}
+		public function setDescricao($descricao)
+		{
+			$this->descricao = $descricao;
+		}
 		
-
+		public function getObjetos()
+		{
+			return $this->objetos;
+		}
+		public function setObjetos($objetos)
+		{
+			$this->objetos = $objetos;
+		}
 
 	}
 

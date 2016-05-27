@@ -21,16 +21,23 @@
 		private $descricao;
 
 		/**
-		*
-		* @var @Column(name="idCampus", type="integer")
-		*/
+		 * @ManyToOne(targetEntity="Campus",cascade={"persist"})
+		 * @JoinColumn(name="idCampus", referencedColumnName="id")
+		 */
 		private $idCampus;
 
-		public function __construct($id = 0, $descricao = "", $idCampus = 0)
+
+		/**
+		* @OneToMany(targetEntity="Local", mappedBy="local",cascade={"persist","remove"})
+		**/
+		private $locais;
+
+		public function __construct($id = 0, $descricao = "", $idCampus = 0, $locais = array())
 		{
 			$this->id = $id;
 			$this->descricao = $descricao;
 			$this->idCampus = $idCampus;
+			$this->locais = $locais;
 		}
 
 		public function getId()
@@ -60,6 +67,14 @@
 			$this->idCampus = $idCampus;
 		}
 
+		public function getLocais()
+		{
+			return $this->locais;
+		}
+		public function setLocais($locais)
+		{
+			$this->locais = $locais;
+		}
 		
 
 

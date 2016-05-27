@@ -38,14 +38,19 @@
 		*/
 		private $telefone;
 
+		/**
+		* @OneToMany(targetEntity="Objeto", mappedBy="objeto",cascade={"persist","remove"})
+		**/
+		private $objetos;
 
-		public function __construct($id = 0, $nome = "", $email = "", $matricula = "", $telefone = "")
+		public function __construct($id = 0, $nome = "", $email = "", $matricula = "", $telefone = "", $objetos = array())
 		{
 			$this->id = $id;
 			$this->nome = $nome;
 			$this->email = $email;
 			$this->matricula = $matricula;
 			$this->telefone = $telefone;
+			$this->$objetos = $objetos;
 
 		}
 
@@ -92,6 +97,15 @@
 		public function setTelefone($telefone)
 		{
 			$this->telefone = $telefone;
+		}
+
+		public function getObjetos()
+		{
+			return $this->objetos;
+		}
+		public function setObjetos($objetos)
+		{
+			$this->objetos = $objetos;
 		}
 
 

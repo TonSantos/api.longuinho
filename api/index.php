@@ -3,10 +3,13 @@
 	$loader = require __DIR__.'/vendor/autoload.php';
 
 	use Longuinho\entidades\Usuario;
+	use Longuinho\persistencia\UsuarioDAO;
 
-	$u = new Usuario();
-	$u->matricula = 371827;
+	$user = new Usuario(0,"Cito","aluno2@email","66666","8888888");
+	$dao = new UsuarioDAO();
 
-	echo "matricula: ".$u->matricula;
+	$dao->insert($user);
 
+	echo 'sucesso no insert';
+	
  ?>

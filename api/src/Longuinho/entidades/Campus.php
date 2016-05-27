@@ -26,11 +26,17 @@
 		*/
 		private $endereco;
 
-		public function __construct($id = 0, $descricao = "", $endereco = "")
+		/**
+		* @OneToMany(targetEntity="Centro", mappedBy="centro",cascade={"persist","remove"})
+		**/
+		private $centros;
+
+		public function __construct($id = 0, $descricao = "", $endereco = "", $centros = array())
 		{
 			$this->id = $id;
 			$this->descricao = $descricao;
 			$this->endereco = $endereco;
+			$this->centros = $centros;
 		}
 
 		public function getId()
@@ -60,6 +66,14 @@
 			$this->endereco = $endereco;
 		}
 
+		public function getCentros()
+		{
+			return $this->centros;
+		}
+		public function setCentros($centros)
+		{
+			$this->centros = $centros;
+		}
 		
 
 
