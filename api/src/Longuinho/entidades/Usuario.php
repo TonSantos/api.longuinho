@@ -1,11 +1,13 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	use Longuinho\entidades\Entidade;
+
 	/**
 	  * @Entity
 	  * @Table(name="USUARIO")
 	  **/
-	class Usuario
+	class Usuario extends Entidade
 	{	
 		/**
 		* @var integer @Id
@@ -43,14 +45,14 @@
 		**/
 		private $objetos;
 
-		public function __construct($id = 0, $nome = "", $email = "", $matricula = "", $telefone = "", $objetos = array())
+		public function __construct($id = 0, $nome = "", $email = "", $matricula = "", $telefone = "")
 		{
 			$this->id = $id;
 			$this->nome = $nome;
 			$this->email = $email;
 			$this->matricula = $matricula;
 			$this->telefone = $telefone;
-			$this->$objetos = $objetos;
+			// $this->$objetos = $objetos;
 
 		}
 
@@ -106,6 +108,17 @@
 		public function setObjetos($objetos)
 		{
 			$this->objetos = $objetos;
+		}
+
+		public function toArray()
+		{
+			return [
+			"id" => $this->id,
+			"nome" => $this->nome,
+			"email" => $this->email,
+			"matricula" => $this->matricula,
+			"telefone" => $this->telefone
+			];
 		}
 
 

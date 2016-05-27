@@ -33,12 +33,12 @@
 		private $objetos;
 
 
-		public function __construct($id = 0, $idCentro = 0, $descricao = "", $objetos = array())
+		public function __construct($id = 0, $idCentro = 0, $descricao = "")
 		{
 			$this->id = $id;
 			$this->idCentro = $idCentro;
 			$this->descricao = $descricao;
-			$this->$objetos = $objetos;
+			// $this->$objetos = $objetos;
 		}
 
 		public function getId()

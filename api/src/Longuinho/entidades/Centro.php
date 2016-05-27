@@ -32,12 +32,12 @@
 		**/
 		private $locais;
 
-		public function __construct($id = 0, $descricao = "", $idCampus = 0, $locais = array())
+		public function __construct($id = 0, $descricao = "", $idCampus = 0)
 		{
 			$this->id = $id;
 			$this->descricao = $descricao;
 			$this->idCampus = $idCampus;
-			$this->locais = $locais;
+			// $this->locais = $locais;
 		}
 
 		public function getId()

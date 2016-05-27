@@ -31,12 +31,12 @@
 		**/
 		private $centros;
 
-		public function __construct($id = 0, $descricao = "", $endereco = "", $centros = array())
+		public function __construct($id = 0, $descricao = "", $endereco = "")
 		{
 			$this->id = $id;
 			$this->descricao = $descricao;
 			$this->endereco = $endereco;
-			$this->centros = $centros;
+			// $this->centros = $centros;
 		}
 
 		public function getId()
