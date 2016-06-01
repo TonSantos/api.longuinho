@@ -13,11 +13,13 @@
 	use Longuinho\entidades\Campus;
 	use Longuinho\persistencia\CampusDAO;
 	use Longuinho\controlador\UsuarioController;
+	use Longuinho\controlador\CampusController;
 
 
 	$app = new \Slim\Slim();
 
 	$usuarioCntrl = new UsuarioController();
+	$campusCntrl = new CampusController();
 
 	$app->get('/', function(){
 		echo json_encode([
@@ -25,7 +27,9 @@
 			"version" => "1.0.0"
 			]);
 	});
-	
+
+
+	/******************************USUARIO*****************************************/
 	$app->get('/usuario(/(:id))', function($id = null) use ($usuarioCntrl){
 		echo json_encode($usuarioCntrl->get($id));
 	});
@@ -43,10 +47,51 @@
 	$app->delete('/usuario/:id', function(){
 		echo "DELETE\n";
 	});
+	/***********************************************************************/
+
+	/******************************CAMPUS*****************************************/
+	$app->get('/campus(/(:id))', function($id = null) use ($campusCntrl){
+		echo json_encode($campusCntrl->get($id));
+	});
+	
+	$app->post('/campus(/)', function() use ($campusCntrl){
+		$app = \Slim\Slim::getInstance();
+		$json = json_decode($app->request()->getBody());
+		echo json_encode($campusCntrl->insert($json));
+	});
+
+	$app->put('/campus(/)', function(){
+		echo "PUT\n";
+	});
+
+	$app->delete('/campus/:id', function(){
+		echo "DELETE\n";
+	});
 
 	$app->run();
+	/***********************************************************************/
 
+	/******************************CENTRO*****************************************/
+	$app->get('/campus/:idCampus/centro/(/(:id))', function($id = null) use ($centroCntrl){
+		echo json_encode($centroCntrl->get($id));
+	});
+	
+	$app->post('/centro(/)', function() use ($campusCntrl){
+		$app = \Slim\Slim::getInstance();
+		$json = json_decode($app->request()->getBody());
+		echo json_encode($campusCntrl->insert($json));
+	});
 
+	$app->put('/centro(/)', function(){
+		echo "PUT\n";
+	});
+
+	$app->delete('/centro/:id', function(){
+		echo "DELETE\n";
+	});
+
+	/***********************************************************************/
+	$app->run();
 
 
 

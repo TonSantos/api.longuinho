@@ -1,11 +1,13 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	use Longuinho\entidades\Entidade;
+
 	/**
 	  * @Entity
 	  * @Table(name="CAMPUS")
 	  **/
-	class Campus
+	class Campus extends Entidade
 	{	
 		/**
 		* @var integer @Id
@@ -75,7 +77,14 @@
 			$this->centros = $centros;
 		}
 		
-
+		public function toArray()
+		{
+			return [
+			"id" => $this->id,
+			"descricao" => $this->descricao,
+			"endereco" => $this->endereco
+			];
+		}
 
 	}
 
