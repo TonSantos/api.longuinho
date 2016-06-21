@@ -32,31 +32,7 @@
 			else:
 
 				$obj = $this->getDAO()->findById($id);
-
-				if($obj != null):
-					$data = $obj->toArray();
-				else:
-					$data = [];
-				endif;
-
-			endif;
-
-			return $data;
-		}
-		public function get($idPai,$id)
-		{
-			if($id == null):
-				$data = array();
-				$result = $this->getDAO()->findAll();
-
-				foreach ($result as $obj) {
-					$data[] = $obj->toArray();
-				}
-
-			else:
-
-				$obj = $this->getDAO()->findById($id);
-
+			
 				if($obj != null):
 					$data = $obj->toArray();
 				else:
@@ -74,7 +50,6 @@
 		
 		abstract function delete($id);
 	
-
 	}
 
 ?>

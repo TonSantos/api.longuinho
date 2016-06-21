@@ -27,6 +27,30 @@
 		public function delete($id)
 		{}
 
+		public function getAllById($idCampus,$id)
+		{
+			if($id == null):
+				$data = array();
+				$result = $this->getDAO()->findAllbyId($idCampus);
+
+				foreach ($result as $obj) {
+					$data[] = $obj->toArray();
+				}
+
+			else:
+
+				$obj = $this->getDAO()->findById($id);
+			
+				if($obj != null):
+					$data = $obj->toArray();
+				else:
+					$data = [];
+				endif;
+
+			endif;
+
+			return $data;
+		}
 
 	}
 

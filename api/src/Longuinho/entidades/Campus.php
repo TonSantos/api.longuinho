@@ -1,6 +1,7 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	use Doctrine\Common\Collections\ArrayCollection;
 	use Longuinho\entidades\Entidade;
 
 	/**
@@ -38,7 +39,7 @@
 			$this->id = $id;
 			$this->descricao = $descricao;
 			$this->endereco = $endereco;
-			// $this->centros = $centros;
+		    $this->centros = new ArrayCollection();
 		}
 
 		public function getId()

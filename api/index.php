@@ -14,12 +14,14 @@
 	use Longuinho\persistencia\CampusDAO;
 	use Longuinho\controlador\UsuarioController;
 	use Longuinho\controlador\CampusController;
+	use Longuinho\controlador\CentroController;
 
 
 	$app = new \Slim\Slim();
 
 	$usuarioCntrl = new UsuarioController();
 	$campusCntrl = new CampusController();
+	$centroCntrl = new CentroController();
 
 	$app->get('/', function(){
 		echo json_encode([
@@ -68,14 +70,15 @@
 		echo "DELETE\n";
 	});
 
-	$app->run();
+	
 	/***********************************************************************/
 
 	/******************************CENTRO*****************************************/
-	$app->get('/campus/:idCampus/centro/(/(:id))', function($id = null) use ($centroCntrl){
-		echo json_encode($centroCntrl->get($id));
+	$app->get('/campus/:idCampus/centro(/(:id))', function($idCampus,$id = null) use ($centroCntrl){
+		echo json_encode($centroCntrl->getAllById($idCampus,$id));
 	});
 	
+
 	$app->post('/centro(/)', function() use ($campusCntrl){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request()->getBody());
@@ -109,11 +112,13 @@
 	// $campus = new Campus(0,"Pici","bairro Pici,666 - Fortaleza",array());
 	// $campusdao = new CampusDAO();
 
-	// $campusdao->insert($campus);
+	// // $campusdao->insert($campus);
 
-	// /**********************************/
+	// $campus = $campusdao->findById(2);	
 
-	// $centro = new Centro(0,"Centro de Tecnologia - CT", $campus, array());
+	// // /**********************************/
+
+	// $centro = new Centro(0,"Centro de Humanidades I - CH1", $campus, array());
 	// $centrodao = new CentroDAO();
 
 	// $centrodao->insert($centro);

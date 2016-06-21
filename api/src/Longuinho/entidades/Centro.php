@@ -83,7 +83,7 @@
 			return [
 			"id" => $this->id,
 			"descricao" => $this->descricao,
-			"isCampus" => $this->idCampus
+			"idCampus" => $this->idCampus->toArray()
 			];
 		}
 
