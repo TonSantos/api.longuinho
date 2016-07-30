@@ -4,9 +4,9 @@
 	use Longuinho\entidades\Entidade;
 	/**
 	  * @Entity
-	  * @Table(name="LOCAL")
+	  * @Table(name="CATEGORIA")
 	  **/
-	class Local extends Entidade
+	class Categoria extends Entidade
 	{	
 		/**
 		* @var integer @Id
@@ -15,12 +15,6 @@
 		*/
 		private $id;
 
-
-		/**
-		 * @ManyToOne(targetEntity="Centro")
-		 * @JoinColumn(name="idCentro", referencedColumnName="id")
-		 */
-		private $idCentro;
 
 		/**
 		*
@@ -34,10 +28,9 @@
 		private $objetos;
 
 
-		public function __construct($id = 0, $descricao = "", $idCentro = 0)
+		public function __construct($id = 0, $descricao = "")
 		{
 			$this->id = $id;
-			$this->idCentro = $idCentro;
 			$this->descricao = $descricao;
 			// $this->$objetos = $objetos;
 		}
@@ -49,15 +42,6 @@
 		public function setId($id)
 		{
 			$this->id = $id;
-		}
-
-		public function getIdCentro()
-		{
-			return $this->idCentro;
-		}
-		public function setIdCentro($idCentro)
-		{
-			$this->idCentro = $idCentro;
 		}
 
 		public function getDescricao()
@@ -81,9 +65,7 @@
 		{
 			return [
 			"id" => $this->id,
-			"descricao" => $this->descricao,
-			// "centro" => $this->idCentro->toArray(),
-			"idCentro" => $this->idCentro->getId()
+			"descricao" => $this->descricao
 			];
 		}
 

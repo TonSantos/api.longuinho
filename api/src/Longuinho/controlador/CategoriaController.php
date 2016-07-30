@@ -1,16 +1,16 @@
 <?php 
 	namespace Longuinho\controlador;
 
-	use Longuinho\persistencia\UsuarioDAO;
-	use Longuinho\entidades\Usuario;
+	use Longuinho\persistencia\CategoriaDAO;
+	use Longuinho\entidades\Categoria;
 
-	class UsuarioController
+	class CategoriaController
 	{
 		private $dao;
 
 		public function __construct()
 		{
-			$this->setDAO( new UsuarioDAO() );
+			$this->setDAO( new CategoriaDAO() );
 		}
 
 		public function getDAO()
@@ -49,10 +49,10 @@
 
 		public function insert($json)
 		{
-			$user = new Usuario(0,$json->nome,$json->email,$json->matricula,$json->telefone);
-			$this->getDAO()->insert($user);
+			$categoria = new Categoria(0,$json->descricao);
+			$this->getDAO()->insert($categoria);
 
-			return ["mensagem" => "Usuario Inserido com Sucesso!"];
+			return ["mensagem" => "Categoria Inserida com Sucesso!"];
 		}
 
 		public function update($id,$json)

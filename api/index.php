@@ -17,6 +17,7 @@
 	use Longuinho\controlador\CentroController;
 	use Longuinho\controlador\LocalController;
 	use Longuinho\controlador\ObjetoController;
+	use Longuinho\controlador\CategoriaController;
 
 
 	$app = new \Slim\Slim();
@@ -26,6 +27,7 @@
 	$centroCntrl = new CentroController();
 	$localCntrl = new LocalController();
 	$objetoCntrl = new ObjetoController();
+	$categoriaCntrl = new CategoriaController();
 
 	$app->get('/', function(){
 		echo json_encode([
@@ -36,25 +38,44 @@
 
 
 	/******************************USUARIO*****************************************/
-	$app->get('/usuario(/(:id))', function($id = null) use ($usuarioCntrl){
+	$app->get('/usuarios(/(:id))', function($id = null) use ($usuarioCntrl){
 		echo json_encode($usuarioCntrl->get($id));
 	});
 	
-	$app->post('/usuario(/)', function() use ($usuarioCntrl){
+	$app->post('/usuarios(/)', function() use ($usuarioCntrl){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request()->getBody());
 		echo json_encode($usuarioCntrl->insert($json));
 	});
 
-	$app->put('/usuario(/)', function(){
+	$app->put('/usuarios(/)', function(){
 		echo "PUT\n";
 	});
 
-	$app->delete('/usuario/:id', function(){
+	$app->delete('/usuarios/:id', function(){
 		echo "DELETE\n";
 	});
 	/***********************************************************************/
+	/******************************CATEGORIA*****************************************/
+	$app->get('/categorias(/(:id))', function($id = null) use ($categoriaCntrl){
+		echo json_encode($categoriaCntrl->get($id));
+	});
+	
+	$app->post('/categorias(/)', function() use ($categoriaCntrl,$app){
+		$app = \Slim\Slim::getInstance();
+		$json = json_decode($app->request->getBody());
+		echo json_encode($categoriaCntrl->insert($json));
+	});
 
+	$app->put('/categorias(/)', function(){
+		echo "PUT\n";
+	});
+
+	$app->delete('/categorias/:id', function(){
+		echo "DELETE\n";
+	});
+
+	/***********************************************************************/
 	/******************************CAMPUS*****************************************/
 	$app->get('/campus(/(:id))', function($id = null) use ($campusCntrl){
 		echo json_encode($campusCntrl->get($id));
@@ -78,66 +99,69 @@
 	/***********************************************************************/
 
 	/******************************CENTRO*****************************************/
-	$app->get('/campus/:idCampus/centro(/(:id))', function($idCampus,$id = null) use ($centroCntrl){
+	$app->get('/campus/:idCampus/centros(/(:id))', function($idCampus,$id = null) use ($centroCntrl){
 		echo json_encode($centroCntrl->getAllById($idCampus,$id));
 	});
 	
 
-	$app->post('/centro(/)', function() use ($centroCntrl,$app){
+	$app->post('/centros(/)', function() use ($centroCntrl,$app){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request()->getBody());
 		echo json_encode($centroCntrl->insert($json));
 	});
 
-	$app->put('/centro(/)', function(){
+	$app->put('/centros(/)', function(){
 		echo "PUT\n";
 	});
 
-	$app->delete('/centro/:id', function(){
+	$app->delete('/centros/:id', function(){
 		echo "DELETE\n";
 	});
 
 	/***********************************************************************/
 
 	/******************************LOCAL*****************************************/
-	$app->get('/campus/:idCampus/centro/:idCentro/local(/(:id))', function($idCampus,$idCentro,$id = null) use ($localCntrl){
+	$app->get('/campus/:idCampus/centros/:idCentro/locais(/(:id))', function($idCampus,$idCentro,$id = null) use ($localCntrl){
 		echo json_encode($localCntrl->getAllById($idCentro,$id));
 	});
 	
 
-	$app->post('/local(/)', function() use ($localCntrl,$app){
+	$app->post('/locais(/)', function() use ($localCntrl,$app){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request->getBody());
 		echo json_encode($localCntrl->insert($json));
 	});
 
-	$app->put('/local(/)', function(){
+	$app->put('/locais(/)', function(){
 		echo "PUT\n";
 	});
 
-	$app->delete('/local/:id', function(){
+	$app->delete('/locais/:id', function(){
 		echo "DELETE\n";
 	});
 
 	/***********************************************************************/
 
 	/******************************OBJETO*****************************************/
-	$app->get('/campus/:idCampus/centro/:idCentro/local/:idLocal/item(/(:id))', function($idCampus,$idCentro,$idLocal,$id = null) use ($objetoCntrl){
+	$app->get('/campus/:idCampus/centros/:idCentro/locais/:idLocal/itens(/(:id))', function($idCampus,$idCentro,$idLocal,$id = null) use ($objetoCntrl){
 		echo json_encode($objetoCntrl->getAllById($idLocal,$id));
+	});
+	$app->get('/usuarios/:idUsuario/itens(/(:id))', function($idUsuario,$id = null) use ($objetoCntrl){
+		echo json_encode($objetoCntrl->getAllByIdUser($idUsuario,$id));
 	});
 	
 
-	$app->post('/item(/)', function() use ($localCntrl,$app){
+	$app->post('/itens(/)', function() use ($objetoCntrl,$app){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request->getBody());
-		echo json_encode($localCntrl->insert($json));
+		echo json_encode($objetoCntrl->insert($json));
 	});
 
-	$app->put('/item(/)', function(){
+	$app->put('/itens(/)', function(){
 		echo "PUT\n";
 	});
 
-	$app->delete('/item/:id', function(){
+	$app->delete('/itens/:id', function(){
 		echo "DELETE\n";
 	});
 

@@ -4,6 +4,7 @@
 	use Longuinho\persistencia\ObjetoDAO;
 	use Longuinho\entidades\Objeto;
 	use Longuinho\controlador\Controlador;
+	use \DateTime;
 
 	class ObjetoController extends Controlador
 	{
@@ -16,7 +17,16 @@
 
 		public function insert($json)
 		{
-			$objeto = new Objeto(0, $json->$titulo, $json->$classificacao, $json->$idLocal,0,"0000-00-00 00:00:00", 0, $json->$idUsuario);
+			$horario = new DateTime($json->horario);
+			$objeto = new Objeto(0, 
+								$json->titulo,
+								$json->descricao,
+								$json->classificacao,
+								$json->idLocal,
+								$json->idCategoria,
+								$horario,
+								0,
+								$json->idUsuario);
 			$this->getDAO()->insert($objeto);
 
 			return ["mensagem" => "Item Inserido com Sucesso!"];
@@ -32,6 +42,31 @@
 			if($id == null):
 				$data = array();
 				$result = $this->getDAO()->findAllbyId($idLocal);
+
+				foreach ($result as $obj) {
+					$data[] = $obj->toArray();
+				}
+
+			else:
+
+				$obj = $this->getDAO()->findById($id);
+				
+				if($obj != null):
+					$data = $obj->toArray();
+				else:
+					$data = [];
+				endif;
+
+			endif;
+
+			return $data;
+		}
+
+		public function getAllByIdUser($idUsuario,$id)
+		{
+			if($id == null):
+				$data = array();
+				$result = $this->getDAO()->findAllbyIdUser($idUsuario);
 
 				foreach ($result as $obj) {
 					$data[] = $obj->toArray();

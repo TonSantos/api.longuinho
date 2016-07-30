@@ -22,6 +22,12 @@
 
 		/**
 		*
+		* @var text @Column(type="text")
+		*/
+		private $descricao;
+
+		/**
+		*
 		* @var string @Column(type="string", length=255)
 		*/
 		private $classificacao;
@@ -33,9 +39,9 @@
 		private $idLocal;
 
 		/**
-		*
-		* @var @Column(name="idCategoria", type="integer")
-		*/
+		 * @ManyToOne(targetEntity="Categoria")
+		 * @JoinColumn(name="idCategoria", referencedColumnName="id")
+		 */
 		private $idCategoria;
 
 		/**
@@ -56,10 +62,11 @@
 		 */
 		private $idUsuario;
 
-		public function __construct($id = 0, $titulo = "", $classificacao = "", $idLocal = 0, $idCategoria = 0, $horario = "0000-00-00 00:00:00", $status=0, $idUsuario = 0)
+		public function __construct($id = 0, $titulo = "", $descricao ="", $classificacao = "", $idLocal = 0, $idCategoria = 0, $horario = "0000-00-00 00:00:00", $status=0, $idUsuario = 0)
 		{
 			$this->id = $id;
 			$this->titulo = $titulo;
+			$this->descricao = $descricao;
 			$this->classificacao = $classificacao;
 			$this->idLocal = $idLocal;
 			$this->idCategoria = $idCategoria;
@@ -84,6 +91,14 @@
 		public function setTitulo($titulo)
 		{
 			$this->titulo = $titulo;
+		}
+		public function getDescricao()
+		{
+			return $this->descricao;
+		}
+		public function setDescricao($descricao)
+		{
+			$this->descricao = $descricao;
 		}
 
 		public function getClassificacao()
@@ -151,11 +166,14 @@
 			"id" => $this->id,
 			"titulo" => $this->titulo,
 			"classificacao" => $this->classificacao,
-			"idLocal" => $this->idLocal->toArray(),
-			"idCategoria" => $this->idCategoria,
+			// "local" => $this->idLocal->toArray(),
+			"idLocal" => $this->idLocal->getId(),
+			// "categoria" => $this->idCategoria->toArray(),
+			"idCategoria" => $this->idCategoria->getId(),
 			"horario" => $this->horario,
 			"status" => $this->status,
-			"idUsuario" => $this->idUsuario->toArray()
+			// "usuario" => $this->idUsuario->toArray(),
+			"idUsuario" => $this->idUsuario->getId()
 			];
 		}
 
