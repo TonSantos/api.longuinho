@@ -18,13 +18,35 @@
 
 		public function insert(Objeto $obj)
 		{
-			$usuarioPersistido = $this->entityManager->find('Longuinho\entidades\Usuario', $obj->getIdUsuario()->getId());
+			$usuarioPersistido = $this->entityManager->find('Longuinho\entidades\Usuario', $obj->getIdUsuario());
 			$obj->setIdUsuario($usuarioPersistido);
 
-			$localPersistido = $this->entityManager->find('Longuinho\entidades\Local', $obj->getIdLocal()->getId());
+			$localPersistido = $this->entityManager->find('Longuinho\entidades\Local', $obj->getIdLocal());
 			$obj->setIdLocal($localPersistido);
 
 			parent::insert($obj);
+		}
+		public function findAllbyId($idLocal)
+		{
+
+			$em = $this->entityManager;
+  			$qb = $em->createQueryBuilder();
+
+			  $q  = $qb->select('obj')
+			           ->from($this->entityPath, 'obj')
+			           ->where('obj.idLocal = '.$idLocal)
+			           ->getQuery();
+
+			  $collection = $q->getResult();
+			 
+
+    		$data = array();
+			foreach ($collection as $obj) {
+				
+				$data[] = $obj;
+			}
+			
+			return $data;
 		}
 	}
 

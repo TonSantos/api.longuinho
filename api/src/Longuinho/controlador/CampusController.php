@@ -16,7 +16,7 @@
 
 		public function insert($json)
 		{
-			$campus = new Campus($json->id,$json->descricao,$json->endereco);
+			$campus = new Campus(0,$json->descricao,$json->endereco);
 			$this->getDAO()->insert($campus);
 
 			return ["mensagem" => "Campus Inserido com Sucesso!"];

@@ -15,6 +15,8 @@
 	use Longuinho\controlador\UsuarioController;
 	use Longuinho\controlador\CampusController;
 	use Longuinho\controlador\CentroController;
+	use Longuinho\controlador\LocalController;
+	use Longuinho\controlador\ObjetoController;
 
 
 	$app = new \Slim\Slim();
@@ -22,6 +24,8 @@
 	$usuarioCntrl = new UsuarioController();
 	$campusCntrl = new CampusController();
 	$centroCntrl = new CentroController();
+	$localCntrl = new LocalController();
+	$objetoCntrl = new ObjetoController();
 
 	$app->get('/', function(){
 		echo json_encode([
@@ -79,10 +83,10 @@
 	});
 	
 
-	$app->post('/centro(/)', function() use ($campusCntrl){
+	$app->post('/centro(/)', function() use ($centroCntrl,$app){
 		$app = \Slim\Slim::getInstance();
 		$json = json_decode($app->request()->getBody());
-		echo json_encode($campusCntrl->insert($json));
+		echo json_encode($centroCntrl->insert($json));
 	});
 
 	$app->put('/centro(/)', function(){
@@ -94,12 +98,52 @@
 	});
 
 	/***********************************************************************/
+
+	/******************************LOCAL*****************************************/
+	$app->get('/campus/:idCampus/centro/:idCentro/local(/(:id))', function($idCampus,$idCentro,$id = null) use ($localCntrl){
+		echo json_encode($localCntrl->getAllById($idCentro,$id));
+	});
+	
+
+	$app->post('/local(/)', function() use ($localCntrl,$app){
+		$app = \Slim\Slim::getInstance();
+		$json = json_decode($app->request->getBody());
+		echo json_encode($localCntrl->insert($json));
+	});
+
+	$app->put('/local(/)', function(){
+		echo "PUT\n";
+	});
+
+	$app->delete('/local/:id', function(){
+		echo "DELETE\n";
+	});
+
+	/***********************************************************************/
+
+	/******************************OBJETO*****************************************/
+	$app->get('/campus/:idCampus/centro/:idCentro/local/:idLocal/item(/(:id))', function($idCampus,$idCentro,$idLocal,$id = null) use ($objetoCntrl){
+		echo json_encode($objetoCntrl->getAllById($idLocal,$id));
+	});
+	
+
+	$app->post('/item(/)', function() use ($localCntrl,$app){
+		$app = \Slim\Slim::getInstance();
+		$json = json_decode($app->request->getBody());
+		echo json_encode($localCntrl->insert($json));
+	});
+
+	$app->put('/item(/)', function(){
+		echo "PUT\n";
+	});
+
+	$app->delete('/item/:id', function(){
+		echo "DELETE\n";
+	});
+
+	/***********************************************************************/
+
 	$app->run();
-
-
-
-
-
 
 
 	// $user = new Usuario(0,"Cito","aluno@email","333333","88888");

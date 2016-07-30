@@ -17,9 +17,31 @@
 		}
 		public function insert(Local $obj)
 		{
-			$centroPersistido = $this->entityManager->find('Longuinho\entidades\Centro', $obj->getIdCentro()->getId());
+			$centroPersistido = $this->entityManager->find('Longuinho\entidades\Centro', $obj->getIdCentro());
 			$obj->setIdCentro($centroPersistido);
 			parent::insert($obj);
+		}
+		public function findAllbyId($idCentro)
+		{
+
+			$em = $this->entityManager;
+  			$qb = $em->createQueryBuilder();
+
+			  $q  = $qb->select('loc')
+			           ->from($this->entityPath, 'loc')
+			           ->where('loc.idCentro = '.$idCentro)
+			           ->getQuery();
+
+			  $collection = $q->getResult();
+			 
+
+    		$data = array();
+			foreach ($collection as $obj) {
+				
+				$data[] = $obj;
+			}
+			
+			return $data;
 		}
 	}
 

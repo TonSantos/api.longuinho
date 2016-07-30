@@ -19,13 +19,12 @@
 		public function insert(Centro $obj)
 		{
 			
-			$campusPersistido = $this->entityManager->find('Longuinho\entidades\Campus', $obj->getIdCampus()->getId());
+			$campusPersistido = $this->entityManager->find('Longuinho\entidades\Campus', $obj->getIdCampus());
 			$obj->setIdCampus($campusPersistido);
 			parent::insert($obj);
 		}
 		public function findAllbyId($idCampus)
 		{
-			//return parent::findAll();
 
 			$em = $this->entityManager;
   			$qb = $em->createQueryBuilder();

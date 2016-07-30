@@ -1,11 +1,12 @@
 <?php 
 	namespace Longuinho\entidades;
 
+	use Longuinho\entidades\Entidade;
 	/**
 	  * @Entity
 	  * @Table(name="LOCAL")
 	  **/
-	class Local
+	class Local extends Entidade
 	{	
 		/**
 		* @var integer @Id
@@ -33,7 +34,7 @@
 		private $objetos;
 
 
-		public function __construct($id = 0, $idCentro = 0, $descricao = "")
+		public function __construct($id = 0, $descricao = "", $idCentro = 0)
 		{
 			$this->id = $id;
 			$this->idCentro = $idCentro;
@@ -75,6 +76,14 @@
 		public function setObjetos($objetos)
 		{
 			$this->objetos = $objetos;
+		}
+		public function toArray()
+		{
+			return [
+			"id" => $this->id,
+			"descricao" => $this->descricao,
+			"idCentro" => $this->idCentro->toArray()
+			];
 		}
 
 	}
