@@ -23,9 +23,19 @@
 		}
 
 		public function update($id,$json)
-		{}
+		{
+			$campus = new Campus($id,$json->descricao,$json->endereco);
+			$this->getDAO()->update($campus);
+
+			return ["mensagem" => "Campus Atualizado com Sucesso!"];
+		}
 		public function delete($id)
-		{}
+		{
+			$campus = $this->getDAO()->findById($id);
+			$this->getDAO()->remove($campus);
+
+			return ["mensagem" => "Campus removido com Sucesso!"];
+		}
 
 
 	}

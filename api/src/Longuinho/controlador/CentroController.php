@@ -24,9 +24,20 @@
 		}
 
 		public function update($id,$json)
-		{}
+		{
+			
+			$centro = new Centro($id, $json->descricao, $json->idCampus);
+			$this->getDAO()->update($centro);
+
+			return ["mensagem" => "Centro atualizado com Sucesso!"];
+		}
 		public function delete($id)
-		{}
+		{
+			$centro = $this->getDAO()->findById($id);
+			$this->getDAO()->remove($centro);
+
+			return ["mensagem" => "Centro removido com Sucesso!"];
+		}
 
 		public function getAllById($idCampus,$id)
 		{

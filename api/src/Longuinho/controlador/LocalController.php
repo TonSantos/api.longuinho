@@ -23,9 +23,19 @@
 		}
 
 		public function update($id,$json)
-		{}
+		{
+			$local = new Local($id, $json->descricao,$json->idCentro);
+			$this->getDAO()->update($local);
+
+			return ["mensagem" => "Local atualizado com Sucesso!"];
+		}
 		public function delete($id)
-		{}
+		{
+			$local = $this->getDAO()->findById($id);
+			$this->getDAO()->remove($local);
+
+			return ["mensagem" => "Local removido com Sucesso!"];
+		}
 
 		public function getAllById($idCentro,$id)
 		{

@@ -43,6 +43,13 @@
 			
 			return $data;
 		}
+
+		public function update($obj)
+		{
+			$centroPersistido = $this->entityManager->find('Longuinho\entidades\Centro', $obj->getIdCentro());
+			$obj->setIdCentro($centroPersistido);
+			parent::update($obj);
+		}
 	}
 
 ?>

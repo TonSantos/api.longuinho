@@ -49,16 +49,27 @@
 
 		public function insert($json)
 		{
-			$categoria = new Categoria(0,$json->descricao);
+			$categoria = new Categoria(0, $json->descricao);
 			$this->getDAO()->insert($categoria);
 
 			return ["mensagem" => "Categoria Inserida com Sucesso!"];
 		}
 
 		public function update($id,$json)
-		{}
+		{
+			$categoria = new Categoria($id, $json->descricao);
+			$this->getDAO()->update($categoria);
+
+			return ["mensagem" => "Categoria atualizada com Sucesso!"];
+		}
 		public function delete($id)
-		{}
+		{
+
+			$categoria = $this->getDAO()->findById($id);
+			$this->getDAO()->remove($categoria);
+
+			return ["mensagem" => "Categoria removida com Sucesso!"];
+		}
 
 
 	}

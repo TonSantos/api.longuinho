@@ -56,9 +56,19 @@
 		}
 
 		public function update($id,$json)
-		{}
+		{
+			$user = new Usuario($id ,$json->nome,$json->email,$json->matricula,$json->telefone);
+			$this->getDAO()->update($user);
+
+			return ["mensagem" => "Usuario atualizado com Sucesso!"];
+		}
 		public function delete($id)
-		{}
+		{
+			$user = $this->getDAO()->findById($id);
+			$this->getDAO()->remove($user);
+
+			return ["mensagem" => "Usuario deletado com Sucesso!"];
+		}
 
 
 	}

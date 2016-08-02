@@ -29,7 +29,7 @@
 		private $descricao;
 
 		/**
-		* @OneToMany(targetEntity="Objeto", mappedBy="objeto",cascade={"persist","remove"})
+		* @OneToMany(targetEntity="Objeto", mappedBy="objeto",cascade={"persist"})
 		**/
 		private $objetos;
 

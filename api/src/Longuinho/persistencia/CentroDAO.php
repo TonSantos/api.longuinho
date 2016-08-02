@@ -45,6 +45,13 @@
 			
 			return $data;
 		}
+
+		public function update($obj)
+		{
+			$campusPersistido = $this->entityManager->find('Longuinho\entidades\Campus', $obj->getIdCampus());
+			$obj->setIdCampus($campusPersistido);
+			parent::update($obj);
+		}
 	}
 
 ?>

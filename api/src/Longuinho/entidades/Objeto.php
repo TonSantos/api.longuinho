@@ -165,6 +165,7 @@
 			return [
 			"id" => $this->id,
 			"titulo" => $this->titulo,
+			"descricao" => $this->descricao,
 			"classificacao" => $this->classificacao,
 			// "local" => $this->idLocal->toArray(),
 			"idLocal" => $this->idLocal->getId(),

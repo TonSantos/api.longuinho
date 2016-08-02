@@ -30,7 +30,7 @@
 		private $endereco;
 
 		/**
-		* @OneToMany(targetEntity="Centro", mappedBy="centro",cascade={"persist","remove"})
+		* @OneToMany(targetEntity="Centro", mappedBy="centro",cascade={"persist"})
 		**/
 		private $centros;
 
